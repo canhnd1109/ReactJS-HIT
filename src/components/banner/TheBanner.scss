@@ -1,0 +1,17 @@
+.container {
+    .justify-between span {
+        color: white;
+    }
+    .fix-bg {
+        background: none !important;
+        li a {
+            color: rgba(255, 255, 255, 0.65);
+        }
+        li button {
+            color: rgba(255, 255, 255, 0.65);
+        }
+    }
+    .color-white {
+        color: white !important;
+    }
+}
