@@ -1,0 +1,13 @@
+@mixin flex($jc: center, $at: center) {
+    // display: flex;
+    // justify-content: $jc;
+    // align-items: $at;
+    @content;
+}
+
+@mixin mobile() {
+    @media screen and (max-width: 480px) {
+        // @media
+        @content;
+    }
+}

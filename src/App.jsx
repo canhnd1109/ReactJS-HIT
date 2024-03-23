@@ -1,13 +1,22 @@
-import Button from './components/Button/Button';
-import Table from './components/Table/Table';
+import './App.scss';
+import Header from './components/Header/Header';
+import Banner from './components/Banner/Banner';
+import UserCardList from './components/UserCardList/UserCardList';
+import dataUsers from './data/users.json';
+import Footer from './components/Footer/Footer';
+import Search from './components/Search/Search';
 
-function App() {
+const App = () => {
     return (
-        <>
-            <Button />
-            <Table />
-        </>
+        <div className="app flex justify-center items-center">
+            <Header />
+            <Banner />
+            <UserCardList usersList={dataUsers}>
+                <Search />
+            </UserCardList>
+            <Footer />
+        </div>
     );
-}
+};
 
 export default App;
