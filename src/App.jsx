@@ -1,22 +1,48 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './App.scss';
-import Header from './components/Header/Header';
-import Banner from './components/Banner/Banner';
-import UserCardList from './components/UserCardList/UserCardList';
-import dataUsers from './data/users.json';
-import Footer from './components/Footer/Footer';
-import Search from './components/Search/Search';
+const ImageList = () => {
+    const [listImage, setListImage] = useState([]);
+    const [count, setCount] = useState(0);
 
-const App = () => {
+    useEffect(() => {
+        const fetchImages = async () => {
+            const data = await axios.get(`https://picsum.photos/v2/list?page=2&limit=8`);
+            setListImage([...listImage, ...data.data]);
+        };
+        fetchImages();
+    }, [count]);
+
+    const handleClick = () => {
+        setCount(count + 1);
+    };
+
     return (
-        <div className="app flex justify-center items-center">
-            <Header />
-            <Banner />
-            <UserCardList usersList={dataUsers}>
-                <Search />
-            </UserCardList>
-            <Footer />
-        </div>
+        <>
+            {listImage && listImage.length > 0 ? (
+                <div className="container">
+                    <>
+                        {listImage.map((item, index) => {
+                            return (
+                                <div key={index} className="img ">
+                                    <img src={item.download_url} alt="" className="img-item" />
+                                </div>
+                            );
+                        })}
+                    </>
+                </div>
+            ) : (
+                <>
+                    <tr>
+                        <td>Not found data</td>
+                    </tr>
+                </>
+            )}
+            <div className="btn">
+                <button onClick={() => handleClick()}>Load more</button>
+            </div>
+        </>
     );
 };
 
-export default App;
+export default ImageList;
